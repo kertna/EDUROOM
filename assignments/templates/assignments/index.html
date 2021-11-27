@@ -1,0 +1,74 @@
+{% extends "assignments/base.html" %}
+{% load static %}
+{% block content %}
+<div class="home-sec" id="home" >
+   <div >
+      <div class="container">
+         <div class="row text-center " >
+            <div class="col-lg-12  col-md-12 col-sm-12">
+               <div class="set-flexi" id="main-section" >
+                  <ul class="slides move-me">
+                     <!-- Slider 01 -->
+                     <li>
+                        <h3>Study with us</h3>
+                        <h1>Evaluation made easier</h1>
+                        <a  href="{% url 'create' %}" class="btn btn-info btn-lg" >
+                        CREATE ASSIGNMENT
+                        </a>
+                        <a  href="{% url 'search_assignment' %}" class="btn btn-success btn-lg" >
+                        SUBMIT ASSIGNMENT
+                        </a>
+                     </li>
+                     <!-- End Slider 01 -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--HOME SECTION END-->   
+<!--HOME SECTION TAG LINE END-->   
+<div id="features-sec" class="container set-pad" >
+   <div class="row text-center">
+      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+         <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">FEATURE LIST </h1>
+      </div>
+   </div>
+   <!--/.HEADER LINE END-->
+   <div class="row" >
+      <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s">
+         <div class="about-div">
+            <h3 >EVALUATION</h3>
+            <hr />
+            <hr />
+            <p >
+               We provide an interface where a user can create and submit assignments and evaluate them
+            </p>
+         </div>
+      </div>
+      <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
+         <div class="about-div">
+            <h3 >PLAGIARISM FINDING</h3>
+            <hr />
+            <hr />
+            <p >
+               We check for plagiarism and mark submissions red 
+               if found similar and display it beside the submission
+            </p>
+         </div>
+      </div>
+      <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.6s">
+         <div class="about-div">
+            <h3 >DISCUSSION FORUM</h3>
+            <hr />
+            <hr />
+            <p >
+               We provide an option for the students and teachers to discuss 
+               about the assignment through discussion forum
+            </p>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock content %}

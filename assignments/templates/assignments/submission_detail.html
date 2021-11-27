@@ -1,0 +1,57 @@
+{% extends "assignments/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body style="background-color:lavender">
+   <div style="display: flex;">
+      <div style="flex: 1;height:550px">
+         <div>
+            <center>
+               <h4><b>{{assign.title}} </h4>
+               </b>
+            </center>
+            <center>
+               <h4><b>{{assign.deadline}} </h4>
+               </b>
+            </center>
+            <center><a href="{{assign.question_file.url}}"> VIEW QUESTION</a></center>
+            {% if completed%}
+            {% if marks %}
+            <center>
+               <h4 style="color:green"> Points : {{marks}} / {{assign.maximum_marks}} </h4>
+            </center>
+            {%else%}
+            <center>
+               <h4 style="color:green"> "You completed the assignment" </h4>
+            </center>
+            <center>
+               <h4 style="color:red"> NOT YET GRADED</h4>
+            </center>
+            {% endif %}
+            
+            {% endif %}
+         </div>
+      </div>
+      <div style="flex: 1;">
+         <div>
+            <div class="chat">
+                <h4 style="margin-left:50px;"> ASSIGNMENT DISCUSSION</h4>
+               {% for msg in msgs %}
+               <div class="msg">
+                  <b>{{msg.student_name }} : </b>
+                  {{msg.message}}
+               </div>
+               {% endfor %}
+               <div style="height:40px"></div>
+            </div>
+            <div class="chat-box">
+               <form method="GET" action="{% url 'submit-message' assign.code %}" >
+                  <input type="text" name="message" value="{{request.GET.message}}"   placeholder="Enter message"  class="chat-input">
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div>
+</body>
+{% endblock content %}

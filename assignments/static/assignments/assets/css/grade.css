@@ -1,0 +1,77 @@
+body{
+    background-color: black;
+    padding: 25px;
+  }
+  .flex-container {
+    display: flex;
+}
+.flex-child {
+  flex: 1;
+  border: 2px solid yellow;
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+} 
+  .container{
+    width: 720px;
+    min-height: 200px;
+    flex: 1;
+    max-height: 550px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: lavender;
+    font-family: Lato;
+  }
+  
+  .container h2{
+    text-align: center;
+  }
+  
+  table{
+    margin: 0 auto;
+  }
+  
+  td, th {
+    padding: 12px;
+    border: 2px dotted;
+  }
+
+  .chat{
+    background-color: #eee;
+    width: 400px;
+    height: 550px;
+    border: 1px dotted black;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    float: right;
+    margin-right: 20px;
+    margin-left: 10px;
+    font-family: Lato;
+    
+  }
+
+  .chat-box 
+  {
+    position: fixed;
+    margin-top: 515px;
+    font-family: Lato;
+    
+  }
+
+  .chat-input {
+    height: 30px;
+    width: 380px;
+    margin-left: 10px;
+  }
+
+  .msg {
+    padding: 5px;
+    border: 2px solid lavender;
+    background-color: #f1f1f1;
+  }
+  

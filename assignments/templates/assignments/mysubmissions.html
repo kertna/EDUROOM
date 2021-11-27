@@ -1,0 +1,18 @@
+{% extends "assignments/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="test">
+   {% for assign in assigns%}
+   <div class="card">
+      <div class="image-container">
+         <img src="{% static 'assignments/assets/img/assignment.jpg' %}"alt="BACKGROUND" style="width:100%";>
+         <div class="centered">
+            <h2><a href="{% url 'submission-detail' assign.code %}">{{assign.code}}</a></h2>
+         </div>
+      </div>
+      
+   </div>
+   {%endfor%}
+</div>
+{% endblock content %}

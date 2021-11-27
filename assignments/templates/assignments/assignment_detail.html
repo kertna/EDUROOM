@@ -1,0 +1,118 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="Keywords" content="html, css, html tables, table">
+      <meta name="Description" content="html table">
+      <title>Eduroom</title>
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="{% static 'assignments/assets/css/grade.css' %}">
+   </head>
+   
+   <body>
+      <div class="flex-container">
+         <div class="container" >
+            <h2>
+               EVALUATE ASSIGNMENT 
+               <h5>
+                  <a  href="{% url 'check_plagiarism' assign.code%}" >
+                     <center>CHECK PLAGIARISM</center>
+                  </a>
+               </h5>
+            </h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Username</th>
+                     <th>Solution</th>
+                     <th>Marks </th>
+                     <th>Comment </th>
+                     <th> Edit Marks</th>
+                  <tr>  
+               </thead>
+               <tbody>
+                  {% for submission in submissions %}
+                  <tr>
+                     {% if not submission.marks%}
+                     <td>
+                        {% if submission.is_copied %}
+                        <b style="color:#AF0000">{{submission.student_name}}</b>
+                        {% elif submission.submission_time <= assign.deadline %}
+                        <b style="color:green">{{submission.student_name}}</b>
+                        {% elif submission.submission_time > assign.deadline %}
+                        <b style="color:green">{{submission.student_name}}</b>
+                        <i style="color:#AF0000">(late)</i>
+                        {% endif %}
+                     </td>
+                     <td>
+                        <a href="{{submission.solution_file.url}}"> SOLUTION</a>
+                     </td>
+                     <td>
+                        <form method="GET" action="{% url 'grade' submission.id %}" >
+                           <input type="text" name="marks" value="{{request.GET.marks}}"   placeholder="Enter marks" style="margin-left:25px" "margin-top:15px" >
+                        </form>
+                     </td>
+                     <td>
+                        {{submission.comment}}
+                     </td>
+                     <td>
+                        <center> NA</center>
+                     </td>
+                     {%endif%}
+                  </tr>
+                  {%endfor%}
+                  {% for submission in submissions %}
+                  <tr>
+                     {% if submission.marks%}
+                     <td>
+                        {% if submission.is_copied %}
+                        <b style="color:#AF0000">{{submission.student_name}}</b>
+                        {% elif submission.submission_time <= assign.deadline %}
+                        <b style="color:green">{{submission.student_name}}</b>
+                        {% elif submission.submission_time > assign.deadline %}
+                        <b style="color:green">{{submission.student_name}}</b>
+                        <i style="color:#AF0000">(late)</i>
+                        {% endif %}
+                     </td>
+                     <td>
+                        <a href="{{submission.solution_file.url}}"> SOLUTION</a>
+                     </td>
+                     <td>
+                        <center>{{submission.marks}}</center>
+                     </td>
+                     <td>
+                        {{submission.comment}}
+                     </td>
+                     <td>
+                        <form method="GET" action="{% url 'grade' submission.id %}" >
+                           <input type="text" name="marks" value="{{request.GET.marks}}"   placeholder="Edit marks" style="margin-left:25px" "margin-top:15px" >
+                        </form>
+                     </td>
+                     {%endif%}
+                  </tr>
+                  {%endfor%}
+               </tbody>
+            </table>
+         </div>
+         <div>
+            <div class="chat">
+              <h4 style="margin-left:50px;"> ASSIGNMENT DISCUSSION</h4>
+               {% for message in messages %}
+               <div class="msg">
+                  <b>{{message.student_name }} : </b>
+                  {{message.message}}
+               </div>
+               {% endfor %}
+               <div style="height:40px"></div>
+            </div>
+            <div class="chat-box">
+               <form method="GET" action="{% url 'submit-message' assign.code %}" >
+                  <input type="text" name="message" value="{{request.GET.message}}"   placeholder="Enter message"  class="chat-input">
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "assignments/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body style="background-color:lavender">
+   <center>
+   <div class="center-search">
+      <div id="content">
+         <form method="GET" action="{% url 'assignment_detail_for_student' %}" class='form-inline'>
+            <div class="input-group">
+               <input type='text' id='search' class="form-control search-form" name="code_value" value="{{request.GET.code_value}}" placeholder="Enter Assignment Code">
+               <span class="input-group-btn" style="width:39px">
+               <button id="search-this"type="submit" class="pull-right btn btn-default search-btn">
+               <i class="fa fa-search"></i>
+               </button>
+               </span>
+            </div>
+         </form>
+      </div>
+   </div>
+   <center>
+<body>
+{% endblock content %}

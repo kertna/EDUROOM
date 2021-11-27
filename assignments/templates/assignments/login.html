@@ -1,0 +1,29 @@
+{% extends "assignments/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="contact-sec"   >
+   <div class="overlay">
+      <div class="container set-pad">
+         <div class="row set-row-pad"  data-scroll-reveal="enter from the bottom after 0.5s" >
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+               <form method="POST">
+                  {% csrf_token %}
+                  <fieldset class="form-group">
+                     {{ form|crispy }}
+                  </fieldset>
+                  <div class="form-group">
+                     <button type="submit" class="btn btn-info btn-block btn-lg"> LOGIN</button>
+                  </div>
+               </form>
+               <div class="border-top pt-3">
+                  <small class="text-muted">
+                  Forgot password? <a class="ml-2" href="{% url 'reset_password' %}">Forgot password</a>
+                  </small>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock content %}
